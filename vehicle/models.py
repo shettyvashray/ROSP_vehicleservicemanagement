@@ -37,7 +37,7 @@ class Request(models.Model):
     cat=(('two wheeler with gear','two wheeler with gear'),('two wheeler without gear','two wheeler without gear'),('three wheeler','three wheeler'),('four wheeler','four wheeler'))
     category=models.CharField(max_length=50,choices=cat)
 
-    vehicle_no=models.PositiveIntegerField(null=False)
+    vehicle_no=models.CharField(max_length=50, null=False)
     vehicle_name = models.CharField(max_length=40,null=False)
     vehicle_model = models.CharField(max_length=40,null=False)
     vehicle_brand = models.CharField(max_length=40,null=False)
