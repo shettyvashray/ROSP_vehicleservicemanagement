@@ -1,48 +1,92 @@
 {% extends 'vehicle/customerbase.html' %}
 {% block content %}
 
-	<!-- main content -->
-	<div class="wrapper">
+<!-- main content -->
+<div class="wrapper">
+	<!-- ****** table  start ********** -->
+	<div class="row">
+		<div class="col-12 col-m-12 col-sm-12">
+			<div class="card">
+				<div class="card-header">
+					<h3 style="color:red; text-align:center">Approved Request With Cost
+					</h3>
 
-<!-- ****** table  start ********** -->
-		<div class="row">
-			<div class="col-12 col-m-12 col-sm-12">
-				<div class="card">
-					<div class="card-header">
-						<h3 style="color:red; text-align:center" >Approved Request With Cost
-						</h3>
+				</div>
+				<div class="card-content">
+					<table>
+						<thead>
+							<tr>
+								<th>Vehicle Name</th>
+								<th>Vehicle Number</th>
+								<th>Problem Description</th>
+								<th>Enquiry Date</th>
+								<th>Total Cost</th>
+								<th>Invoice</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for enq in enquiries %}
+							<tr>
+								<td>{{enq.vehicle_name}}</td>
+								<td>{{enq.vehicle_no}}</td>
+								<td>{{enq.problem_description}}</td>
+								<td>{{enq.date}}</td>
+								<td onclick="openPopup()">{{enq.cost}}</td>
+								<td><a href="{% url 'download-invoice' enq.id  %}">Download</a></td>
+							</tr>
+							{% endfor %}
 
-					</div>
-					<div class="card-content">
-						<table>
-							<thead>
-                <tr>
-                  <th>Vehicle Name</th>
-                  <th>Vehicle Number</th>
-                  <th>Problem Description</th>
-                  <th>Enquiry Date</th>
-									<th>Total Cost</th>
-                </tr>
-							</thead>
-							<tbody>
-                {% for enq in enquiries %}
-                <tr>
-                  <td>{{enq.vehicle_name}}</td>
-                  <td>{{enq.vehicle_no}}</td>
-                  <td>{{enq.problem_description}}</td>
-                  <td>{{enq.date}}</td>
-                  <td>{{enq.cost}}</td>
-                </tr>
-                {% endfor %}
-
-							</tbody>
-						</table>
-					</div>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-<!-- ****** table start ********** -->
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>
-	<!-- end main content -->
+	<!-- ****** table start ********** -->
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<div class="popup" id="popup">
+		<h2>Bill Breakdown</h2>
+		<br>
+		<table>
+			<thead>
+				<tr>
+					<th>S.No.</th>
+					<th>Particulars</th>
+					<th>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1.</td>
+					<td>Steering column</td>
+					<td>Rs 6500</td>
+				</tr>
+				<tr>
+					<td>2.</td>
+					<td>Airbag unit</td>
+					<td>Rs 2500</td>
+				</tr> 
+				<tr>
+					<td>3.</td>
+					<td>Labour</td>
+					<td>Rs 1000</td>
+				</tr>   
+			</tbody>
+		</table>
+		<button type="button" onclick="closePopup()">Close</button>
+	</div>
+
+	<script>
+		let popup = document.getElementById("popup");
+
+		function openPopup() {
+			popup.classList.add("open-popup");
+		}
+
+		function closePopup() {
+			popup.classList.remove("open-popup");
+		}
+	</script>
+</div>
+<!-- end main content -->
 {% endblock content %}

@@ -36,7 +36,7 @@
                   <td>{{m.mobile}}</td>
                   <td>{{m.address}}</td>
                   <td>{{m.skill}}</td>
-                  <td><a  style="color:red; text-decoration:none;font-size:25px;" href="{% url 'approve-mechanic' m.id  %}">&#10004;</a></td>
+                  <td><a  style="color:red; text-decoration:none;font-size:25px;" href="{% url 'approve-mechanic' m.id  %}" onclick="window.open('https://api.whatsapp.com/send?phone={{m.mobile}}&text=Hello%20Sir.%0d%0aYou%20are%20selected%20for%20the%20job.&source=&data=#')">&#10004;</a></td>
                   <td><a style="color:blue; text-decoration:none;font-size:25px;"href="{% url 'delete-mechanic' m.id  %}">&#10008;</a></td>
                 </tr>
                 {% endfor %}

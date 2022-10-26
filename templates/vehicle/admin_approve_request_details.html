@@ -40,7 +40,7 @@
   <form method="post" style="margin-left:200px;margin-right:200px;">
       {% csrf_token %}
 
-    <label for="cost">Repair Cost</label>
+    <label for="cost">Estimated Repair Cost</label>
     {% render_field adminenquiry.cost class="form-control" placeholder="Repair Cost" %}
 
     <label for="mechanic">Assign Mechanic</label>
